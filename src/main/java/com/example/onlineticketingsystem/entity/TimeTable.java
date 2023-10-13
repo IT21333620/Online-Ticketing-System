@@ -8,19 +8,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
 import java.sql.Time;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Bus {
+public class TimeTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private int busOwner;
-    private int routeNo;
-    private int capasity;
+    private int scheduleNo;
+    private int routeId;
+    private int busId;
+    private String day;
+    private Time StartTime;
+
 }

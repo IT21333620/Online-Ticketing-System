@@ -1,26 +1,26 @@
 package com.example.onlineticketingsystem.entity;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.util.List;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Bus {
+public class BusOwner extends User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private int busOwner;
-    private int routeNo;
-    private int capasity;
+    private int busownerID;
+
+    @ElementCollection
+    private List<String> ownedBuses;
 }
