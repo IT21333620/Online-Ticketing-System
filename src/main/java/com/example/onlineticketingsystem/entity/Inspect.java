@@ -15,12 +15,16 @@ import java.sql.Time;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Bus {
-
+public class Inspect {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private int busOwner;
-    private int routeNo;
-    private int capasity;
+    private int InspectId;
+    private int inspectorId;
+    private int busId;
+    private Date inspectDate;
+    private Time inspectTime;
+    private int NofraudDetected;
+    private int NoOFPssUsers;
+
+
 }

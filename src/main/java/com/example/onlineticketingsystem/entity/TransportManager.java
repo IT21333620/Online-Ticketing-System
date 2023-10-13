@@ -8,19 +8,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
-import java.sql.Time;
-
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Bus {
+public class TransportManager extends User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private int busOwner;
-    private int routeNo;
-    private int capasity;
+    private int managerId;
+
+
 }
