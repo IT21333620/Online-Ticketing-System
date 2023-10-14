@@ -23,8 +23,8 @@ public class Inspect {
     private int busId;
     private Date inspectDate;
     private Time inspectTime;
-    private int NofraudDetected;
-    private int NoOFPssUsers;
+    private int NoFraudDetected;
+    private int NoOfPassengers;
 
 
 }

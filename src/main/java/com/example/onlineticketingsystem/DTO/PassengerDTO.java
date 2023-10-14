@@ -1,6 +1,5 @@
-package com.example.onlineticketingsystem.entity;
+package com.example.onlineticketingsystem.DTO;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,16 +7,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@MappedSuperclass
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userID;
+public class PassengerDTO {
+    private int userID; // Changed from int to String
     private String name;
     private String email;
     private String contactNo;
     private String password;
     private String userType;
-}
+    private int balance;
 
+
+
+
+}
