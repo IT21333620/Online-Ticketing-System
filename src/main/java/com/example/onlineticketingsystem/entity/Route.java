@@ -20,5 +20,7 @@ public class Route {
     private int routeNo;
     private String start;
     private String end;
+    private String status;
+
 
 }
