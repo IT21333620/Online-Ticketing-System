@@ -11,17 +11,18 @@ import java.sql.Time;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InspectDTO {
-    private int InspectId;
+    private int inspectId;
     private int inspectorId;
     private int busId;
+    private int routeId;
     private Date inspectDate;
     private Time inspectTime;
-    private int NofraudDetected;
-    private int NoOFPssUsers;
+    private int noFraudDetected;
+    private int noOfPassengers;
 
 
     public void setInspectId(int inspectId) {
-        InspectId = inspectId;
+        inspectId = inspectId;
     }
 
     public void setInspectorId(int inspectorId) {
@@ -41,11 +42,13 @@ public class InspectDTO {
     }
 
     public void setNofraudDetected(int nofraudDetected) {
-        NofraudDetected = nofraudDetected;
+        noFraudDetected = nofraudDetected;
     }
 
     public void setNoOFPssUsers(int noOFPssUsers) {
-        NoOFPssUsers = noOFPssUsers;
+        noOfPassengers = noOFPssUsers;
     }
+
+
 }
 
