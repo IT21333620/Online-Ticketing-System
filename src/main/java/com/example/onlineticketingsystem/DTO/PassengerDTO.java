@@ -8,15 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PassengerDTO {
-    private int userID; // Changed from int to String
+    private int userID;
     private String name;
     private String email;
     private String contactNo;
     private String password;
     private String userType;
     private int balance;
-
-
-
-
 }
