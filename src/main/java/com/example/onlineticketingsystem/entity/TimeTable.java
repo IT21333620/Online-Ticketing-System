@@ -19,8 +19,8 @@ public class TimeTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int scheduleNo;
-    private int routeId;
-    private int busId;
+    private int routeID;
+    private int busID;
     private String day;
     private Time StartTime;
 

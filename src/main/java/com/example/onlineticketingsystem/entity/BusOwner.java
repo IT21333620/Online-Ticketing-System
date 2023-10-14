@@ -12,10 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BusOwner extends User{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int busownerID;
 
-    @ElementCollection
-    private List<String> ownedBuses;
+    private int registrationNo;
+    private String ownedBuses;
 }

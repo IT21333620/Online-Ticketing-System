@@ -15,8 +15,6 @@ import lombok.Value;
 @NoArgsConstructor
 public class TicketInspector extends User{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int inspectorId;
-    
+    private int inspectorID;
+
 }

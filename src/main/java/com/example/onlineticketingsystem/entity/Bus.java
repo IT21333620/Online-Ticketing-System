@@ -20,7 +20,7 @@ public class Bus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int busOwner;
+    private int busOwnerID;
     private int routeNo;
-    private int capasity;
+    private int capacity;
 }
