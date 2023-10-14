@@ -4,13 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Time;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class RouteDTO {
-    private int id;
-    private int routeNo;
-    private String start;
-    private String end;
-    private String status;
+public class TimeTableDTO {
+    private int scheduleNo;
+    private int routeID;
+    private int busID;
+    private String day;
+    private Time StartTime;
 }
