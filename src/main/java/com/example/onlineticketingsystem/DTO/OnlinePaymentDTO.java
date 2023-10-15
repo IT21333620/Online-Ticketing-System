@@ -1,27 +1,19 @@
-package com.example.onlineticketingsystem.entity;
+package com.example.onlineticketingsystem.DTO;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class OnlinePayment {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class OnlinePaymentDTO {
     private int paymentID;
     private int userID;
     private float amount;
     private LocalDate date;
     private String type;
-
 }
