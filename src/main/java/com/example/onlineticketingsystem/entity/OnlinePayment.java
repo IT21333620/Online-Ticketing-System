@@ -8,13 +8,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Passenger extends User{
-    private int balance;
+@Data
+public class OnlinePayment {
 
-    public Passenger(int i, String shadhir, String mail, String number, String sha123, String passenger, int i1) {
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int paymentID;
+    private int userID;
+    private float amount;
+    private LocalDate date;
+    private String type;
+
 }

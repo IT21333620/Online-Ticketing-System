@@ -24,5 +24,26 @@ public class PassengerService {
         return passengerDTO;
     }
 
+    public PassengerDTO getPassengerById (int userID){
+        Passenger passenger = passengerRepo.getPassengerById(userID);
+        return modelMapper.map(passenger,PassengerDTO.class);
+    }
+
+    public int getPassengerByIdBalance (int userID){
+        return passengerRepo.getPassengerByIdBalance(userID);
+    }
+
+    public void updateBalanceByUserId(int amount, int userID) {
+        passengerRepo.updateBalanceByUserId(amount, userID);
+    }
+
+    public int getBalanceByUserId(int userId) {
+        return passengerRepo.getBalanceByUserId(userId);
+    }
+
+    public boolean existsByUserIdAndPassword(int userID, String password) {
+        return passengerRepo.existsByUserIdAndPassword(userID, password);
+    }
+
 
 }
