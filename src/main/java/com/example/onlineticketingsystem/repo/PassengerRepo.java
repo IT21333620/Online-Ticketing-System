@@ -21,5 +21,6 @@ public interface PassengerRepo extends JpaRepository<Passenger,Integer> {
     @Query(value = "SELECT balance FROM passenger WHERE userID = ?1", nativeQuery = true)
     int getBalanceByUserId(@Param("userId") int userId);
 
-
+    @Query(value = "SELECT COUNT(p) > 0 FROM Passenger p WHERE p.userID = ?1 AND p.password = ?2")
+    boolean existsByUserIdAndPassword(@Param("userId") int userId, @Param("password") String password);
 }

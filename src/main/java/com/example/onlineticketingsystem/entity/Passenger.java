@@ -14,4 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Passenger extends User{
     private int balance;
+
+    public Passenger(int i, String shadhir, String mail, String number, String sha123, String passenger, int i1) {
+    }
 }

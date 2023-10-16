@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "api/tickets")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3001")
 public class PassengerController {
 
     @Autowired
@@ -39,4 +39,8 @@ public class PassengerController {
         return ResponseEntity.ok(updatedBalance);
     }
 
+    @GetMapping("/checkPassenger/{userID}/{password}")
+    public boolean existsByUserIdAndPassword(@PathVariable int userID, @PathVariable String password){
+        return passengerService.existsByUserIdAndPassword(userID,password);
+    }
 }

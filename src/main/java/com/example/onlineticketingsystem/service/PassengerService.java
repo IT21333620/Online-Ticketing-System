@@ -39,5 +39,9 @@ public class PassengerService {
         return passengerRepo.getBalanceByUserId(userId);
     }
 
+    public boolean existsByUserIdAndPassword(int userID, String password) {
+        return passengerRepo.existsByUserIdAndPassword(userID, password);
+    }
+
 
 }
