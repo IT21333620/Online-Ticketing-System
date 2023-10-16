@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "api/Inspect")
 @CrossOrigin
+@RequestMapping(value = "api/Inspect")
 public class InspectController {
 
     @Autowired
