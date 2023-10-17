@@ -6,7 +6,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface PassengerRepo extends JpaRepository<Passenger,Integer> {
+import java.util.Optional;
+
 
     @Query(value = "SELECT * FROM passenger WHERE userID = ?1",nativeQuery = true)
     Passenger getPassengerById (int userID);
@@ -23,4 +24,7 @@ public interface PassengerRepo extends JpaRepository<Passenger,Integer> {
 
     @Query(value = "SELECT COUNT(p) > 0 FROM Passenger p WHERE p.userID = ?1 AND p.password = ?2")
     boolean existsByUserIdAndPassword(@Param("userId") int userId, @Param("password") String password);
+
+public interface PassengerRepo extends JpaRepository<Passenger,Integer> {
+
 }

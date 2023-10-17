@@ -22,6 +22,6 @@ public class TimeTable {
     private int routeID;
     private int busID;
     private String day;
-    private Time StartTime;
+    private Time startTime;
 
 }

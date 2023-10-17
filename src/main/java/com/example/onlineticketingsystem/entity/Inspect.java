@@ -18,13 +18,16 @@ import java.sql.Time;
 public class Inspect {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int InspectId;
+    private int inspectId;
     private int inspectorId;
     private int busId;
+    private int routeId;
     private Date inspectDate;
     private Time inspectTime;
-    private int NoFraudDetected;
-    private int NoOfPassengers;
+    private int noFraudDetected;
+    private int noOfPassengers;
 
 
+    public Inspect(int inspectId, int inspectorId, int busId, int routeId, int i, String time, int noFraudDetected, int noOfPassengers) {
+    }
 }
