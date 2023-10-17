@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 
+public interface PassengerRepo extends JpaRepository<Passenger,Integer> {
     @Query(value = "SELECT * FROM passenger WHERE userID = ?1",nativeQuery = true)
     Passenger getPassengerById (int userID);
 
@@ -24,7 +25,5 @@ import java.util.Optional;
 
     @Query(value = "SELECT COUNT(p) > 0 FROM Passenger p WHERE p.userID = ?1 AND p.password = ?2")
     boolean existsByUserIdAndPassword(@Param("userId") int userId, @Param("password") String password);
-
-public interface PassengerRepo extends JpaRepository<Passenger,Integer> {
 
 }
