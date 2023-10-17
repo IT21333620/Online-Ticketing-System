@@ -1,5 +1,6 @@
 package com.example.onlineticketingsystem.DTO;
 
+import com.example.onlineticketingsystem.entity.Inspect;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

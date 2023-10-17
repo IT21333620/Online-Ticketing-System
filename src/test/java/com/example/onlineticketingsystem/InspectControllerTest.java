@@ -1,8 +1,10 @@
 package com.example.onlineticketingsystem;
 
+import com.example.onlineticketingsystem.DTO.InspectDTO;
 import com.example.onlineticketingsystem.controller.InspectController;
 import com.example.onlineticketingsystem.entity.Inspect;
 import com.example.onlineticketingsystem.repo.InspectRepo;
+import com.example.onlineticketingsystem.service.InspectService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.junit.Before;
@@ -28,6 +30,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -41,14 +44,14 @@ public class InspectControllerTest {
     ObjectWriter objectWriter = objectMapper.writer();
 
     @Mock
-    private InspectRepo inspectRepo;
+    private InspectService inspectService;
 
     @InjectMocks
     private InspectController inspectController;
 
-    Inspect Inspect_1 = new Inspect(1, 2, 4, 177, Date.valueOf("2023-10-16"), Time.valueOf("12:30:00"), 3, 130);
-    Inspect Inspect_2 = new Inspect(2, 2, 6, 180, Date.valueOf("2023-10-17"), Time.valueOf("12:30:00"), 3, 130);
-    Inspect Inspect_3 = new Inspect(3, 5, 13, 177, Date.valueOf("2023-10-18"), Time.valueOf("12:30:00"), 3, 130);
+    InspectDTO Inspect_1 = new InspectDTO(1, 2, 4, 177, Date.valueOf("2023-10-16"), Time.valueOf("12:30:00"), 3, 130);
+    InspectDTO Inspect_2 = new InspectDTO(2, 2, 6, 180, Date.valueOf("2023-10-17"), Time.valueOf("12:30:00"), 3, 130);
+    InspectDTO Inspect_3 = new InspectDTO(3, 5, 13, 177, Date.valueOf("2023-10-18"), Time.valueOf("12:30:00"), 3, 130);
 
     @Before
     public void setUp() {
@@ -58,12 +61,16 @@ public class InspectControllerTest {
 
     @Test
     public void getAllInspects_success() throws Exception {
-        List<Inspect> listInspect = new ArrayList<>(Arrays.asList(Inspect_1, Inspect_2, Inspect_3));
+        List<InspectDTO> listInspect = new ArrayList<>();
+        listInspect.add(Inspect_1);
+        listInspect.add(Inspect_2);
+        listInspect.add(Inspect_3);
 
-        Mockito.when(inspectRepo.findAll()).thenReturn(listInspect);
+
+        when(inspectService.getAllInspects()).thenReturn(listInspect);
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/Inspect/bgetInspect")
+                        .get("/api/Inspect/getInspect")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(3)));
