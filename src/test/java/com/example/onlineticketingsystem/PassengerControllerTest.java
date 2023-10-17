@@ -54,7 +54,7 @@ public class PassengerControllerTest {
     }
 
     @Test
-    public void testGetPassengerById0() throws Exception {
+    public void testGetPassengerById_Passing() throws Exception {
         // Arrange
         int userID = 1;
         PassengerDTO passengerDTO = new PassengerDTO(1, "shadhir", "shadhir03@gmail.com", "0768824668", "sha123", "passenger", 550);
@@ -79,69 +79,19 @@ public class PassengerControllerTest {
     }
 
     @Test
-    public void testGetPassengerById1() throws Exception {
+    public void testGetPassengerById_Failing() throws Exception {
         // Arrange
-        int useriD = 1;
+        int userID = 1; // Set the expected userID to 1
         PassengerDTO passengerDTO = new PassengerDTO(1, "shadhir", "shadhir03@gmail.com", "0768824668", "sha123", "passenger", 550);
 
-        // Mock the service call
-        given(passengerService.getPassengerById(anyInt())).willReturn(passengerDTO);
+        // Mock the service call, but return a different userID (e.g., userID = 2)
+        given(passengerService.getPassengerById(anyInt())).willReturn(new PassengerDTO(2, "differentUser", "different@email.com", "1234567890", "differentPass", "otherType", 1000));
 
-        // Act and Assert
-        mockMvc.perform(get("/api/tickets/passengerById/{userID}", useriD)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.useriD").value(1))
-                .andExpect(jsonPath("$.name").value("shadhir"))
-                .andExpect(jsonPath("$.email").value("shadhir03@gmail.com"))
-                .andExpect(jsonPath("$.contactNo").value("0768824668"))
-                .andExpect(jsonPath("$.password").value("sha123"))
-                .andExpect(jsonPath("$.userType").value("passenger"))
-                .andExpect(jsonPath("$.balance").value(550));
-
-        // Verify that the service method was called with the correct parameter
-        Mockito.verify(passengerService).getPassengerById(useriD);
-    }
-
-    @Test
-    public void testGetPassengerById2() throws Exception {
-        // Arrange
-        int userID = 1;
-        PassengerDTO passengerDTO = new PassengerDTO(1, "shadhir", "shadhir03@gmail.com", "0768824668", "sha123", "passenger", 550);
-
-        // Mock the service call
-        given(passengerService.getPassengerById(anyInt())).willReturn(passengerDTO);
-
-        // Act and Assert
+        // Act and Assert (Expecting failure)
         mockMvc.perform(get("/api/tickets/passengerById/{userID}", userID)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.userID").value(1))
-                .andExpect(jsonPath("$.name").value("shadhir"))
-                .andExpect(jsonPath("$.email").value("shadhir03@gmail.com"))
-                .andExpect(jsonPath("$.phone").value("0768824668"))
-                .andExpect(jsonPath("$.password").value("sha123"))
-                .andExpect(jsonPath("$.account").value("passenger"))
-                .andExpect(jsonPath("$.balance").value(550));
-
-        // Verify that the service method was called with the correct parameter
-        Mockito.verify(passengerService).getPassengerById(userID);
-    }
-
-    @Test
-    public void testCreatePassenger0() throws Exception {
-        // Arrange
-        PassengerDTO passengerDTO = new PassengerDTO(1, "shadhir", "shadhir03@gmail.com", "0768824668", "sha123", "passenger", 550);
-
-        // Mock the service call
-        Mockito.when(passengerService.savePassenger(any(PassengerDTO.class))).thenReturn(passengerDTO);
-
-        // Act and Assert
-        mockMvc.perform(post("/api/tickets/createPassenger")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectWriter.writeValueAsString(passengerDTO)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.userID").value(1))
+                .andExpect(jsonPath("$.userID").value(1)) // This should fail
                 .andExpect(jsonPath("$.name").value("shadhir"))
                 .andExpect(jsonPath("$.email").value("shadhir03@gmail.com"))
                 .andExpect(jsonPath("$.contactNo").value("0768824668"))
@@ -151,64 +101,119 @@ public class PassengerControllerTest {
     }
 
     @Test
-    public void testCreatePassenger1() throws Exception {
-        // Arrange
-        PassengerDTO passengerDTO = new PassengerDTO(1, "shadhir", "shadhir03@gmail.com", "0768824668", "sha123", "passenger", 550);
-
-        // Mock the service call
-        Mockito.when(passengerService.savePassenger(any(PassengerDTO.class))).thenReturn(passengerDTO);
-
-        // Act and Assert
-        mockMvc.perform(post("/api/tickets/createPassenger")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectWriter.writeValueAsString(passengerDTO)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.user").value(1))
-                .andExpect(jsonPath("$.name").value("shadhir"))
-                .andExpect(jsonPath("$.email").value("shadhir03@gmail.com"))
-                .andExpect(jsonPath("$.contactNo").value("0768824668"))
-                .andExpect(jsonPath("$.password").value("sha123"))
-                .andExpect(jsonPath("$.role").value("passenger"))
-                .andExpect(jsonPath("$.balance").value(550));
-    }
-
-    @Test
-    public void testCreatePassenger2() throws Exception {
-        // Arrange
-        PassengerDTO passengerDTO = new PassengerDTO(1, "shadhir", "shadhir03@gmail.com", "0768824668", "sha123", "passenger", 550);
-
-        // Mock the service call
-        Mockito.when(passengerService.savePassenger(any(PassengerDTO.class))).thenReturn(passengerDTO);
-
-        // Act and Assert
-        mockMvc.perform(post("/api/tickets/createPassenger")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectWriter.writeValueAsString(passengerDTO)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.userID").value(2))
-                .andExpect(jsonPath("$.name").value("shadhir"))
-                .andExpect(jsonPath("$.email").value("shadhir03@gmail.com"))
-                .andExpect(jsonPath("$.contactNo").value("0768824668"))
-                .andExpect(jsonPath("$.password").value("sha@123"))
-                .andExpect(jsonPath("$.userType").value("passenger"))
-                .andExpect(jsonPath("$.balance").value(550));
-    }
-
-    @Test
-    public void testUpdateBalanceByUserId0() throws Exception {
+    public void testGetPassengerById_FailingHttpStatus() throws Exception {
         // Arrange
         int userID = 1;
-        int updatedBalance = 600; // This should be the updated balance after the operation
+        PassengerDTO passengerDTO = new PassengerDTO(1, "shadhir", "shadhir03@gmail.com", "0768824668", "sha123", "passenger", 550);
 
-        // Mock the service methods
-        Mockito.doNothing().when(passengerService).updateBalanceByUserId(anyInt(), anyInt());
-        Mockito.when(passengerService.getBalanceByUserId(anyInt())).thenReturn(updatedBalance);
+        // Mock the service call
+        given(passengerService.getPassengerById(anyInt())).willReturn(passengerDTO);
+
+        // Act and Assert (Expecting failure)
+        mockMvc.perform(get("/api/tickets/passengerById/{userID}", userID)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound()); // Expecting a different status code (e.g., 404) which will fail
+    }
+
+    @Test
+    public void testCreatePassenger_Passing() throws Exception {
+        // Arrange
+        PassengerDTO passengerDTO = new PassengerDTO(1, "shadhir", "shadhir03@gmail.com", "0768824668", "sha123", "passenger", 550);
+
+        // Mock the service call
+        Mockito.when(passengerService.savePassenger(any(PassengerDTO.class))).thenReturn(passengerDTO);
 
         // Act and Assert
-        mockMvc.perform(put("/api/tickets/updateBalance/{amount}/{userID}", 50, userID)
-                        .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(post("/api/tickets/createPassenger")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectWriter.writeValueAsString(passengerDTO)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$").value(updatedBalance));
+                .andExpect(jsonPath("$.userID").value(1))
+                .andExpect(jsonPath("$.name").value("shadhir"))
+                .andExpect(jsonPath("$.email").value("shadhir03@gmail.com"))
+                .andExpect(jsonPath("$.contactNo").value("0768824668"))
+                .andExpect(jsonPath("$.password").value("sha123"))
+                .andExpect(jsonPath("$.userType").value("passenger"))
+                .andExpect(jsonPath("$.balance").value(550));
+    }
+
+    @Test
+    public void testCreatePassenger_Failing() throws Exception {
+        // Arrange
+        PassengerDTO passengerDTO = new PassengerDTO(1, "shadhir", "shadhir03@gmail.com", "0768824668", "sha123", "passenger", 550);
+
+        // Mock the service call
+        Mockito.when(passengerService.savePassenger(any(PassengerDTO.class))).thenReturn(passengerDTO);
+
+        // Act and Assert (Expecting failure)
+        mockMvc.perform(post("/api/tickets/createPassenger")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectWriter.writeValueAsString(passengerDTO)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.userID").value(2)); // Expecting a different userID (e.g., 2), which will fail
+    }
+
+    @Test
+    public void testCreatePassenger_FailingHttpStatus() throws Exception {
+        // Arrange
+        PassengerDTO passengerDTO = new PassengerDTO(1, "shadhir", "shadhir03@gmail.com", "0768824668", "sha123", "passenger", 550);
+
+        // Mock the service call
+        Mockito.when(passengerService.savePassenger(any(PassengerDTO.class))).thenReturn(passengerDTO);
+
+        // Act and Assert (Expecting failure)
+        mockMvc.perform(post("/api/tickets/createPassenger")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectWriter.writeValueAsString(passengerDTO)))
+                .andExpect(status().isCreated()); // Expecting a different status code (e.g., 201 Created) which will fail
+    }
+
+
+    @Test
+    public void testUpdateBalanceByUserId_Passing() throws Exception {
+        // Arrange
+        int userID = 1;
+        int amount = 100; // Amount to add to the balance
+
+        // Mock the service behavior
+        Mockito.doNothing().when(passengerService).updateBalanceByUserId(amount, userID); // Mock service call to update the balance
+        Mockito.when(passengerService.getBalanceByUserId(userID)).thenReturn(550 + amount); // Mock service call to get updated balance
+
+        // Act and Assert (Expecting success)
+        mockMvc.perform(put("/api/tickets/updateBalance/{amount}/{userID}", amount, userID))
+                .andExpect(status().isOk()) // Expecting HTTP status code 200
+                .andExpect(content().string("650")); // Expecting the updated balance in the response body
+    }
+
+    @Test
+    public void testUpdateBalanceByUserId_FailingHttpStatus() throws Exception {
+        // Arrange
+        int userID = 1;
+        int amount = 100; // Amount to add to the balance
+
+        // Mock the service behavior
+        Mockito.doNothing().when(passengerService).updateBalanceByUserId(amount, userID); // Mock service call to update the balance
+        Mockito.when(passengerService.getBalanceByUserId(userID)).thenReturn(550 + amount); // Mock service call to get updated balance
+
+        // Act and Assert (Expecting failure)
+        mockMvc.perform(put("/api/tickets/updateBalance/{amount}/{userID}", amount, userID))
+                .andExpect(status().isNotFound()); // Expecting a different status code (e.g., 404 Not Found) which will fail
+    }
+
+    @Test
+    public void testUpdateBalanceByUserIdFailingBalance() throws Exception {
+        // Arrange
+        int userID = 1;
+        int amount = 100; // Amount to add to the balance
+
+        // Mock the service behavior
+        Mockito.doNothing().when(passengerService).updateBalanceByUserId(amount, userID); // Mock service call to update the balance
+        Mockito.when(passengerService.getBalanceByUserId(userID)).thenReturn(550); // Mock service call to return a different balance value
+
+        // Act and Assert (Expecting failure)
+        mockMvc.perform(put("/api/tickets/updateBalance/{amount}/{userID}", amount, userID))
+                .andExpect(status().isOk())
+                .andExpect(content().string("650")); // Expecting a different balance value (e.g., "650") which will fail
     }
 
 
