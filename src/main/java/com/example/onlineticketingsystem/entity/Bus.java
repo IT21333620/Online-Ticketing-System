@@ -23,4 +23,5 @@ public class Bus {
     private int busOwnerID;
     private int routeNo;
     private int capacity;
+
 }
