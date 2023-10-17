@@ -1,7 +1,6 @@
 package com.example.onlineticketingsystem.controller;
 
 import com.example.onlineticketingsystem.DTO.BusDTO;
-import com.example.onlineticketingsystem.DTO.UserDTO;
 import com.example.onlineticketingsystem.service.BusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
