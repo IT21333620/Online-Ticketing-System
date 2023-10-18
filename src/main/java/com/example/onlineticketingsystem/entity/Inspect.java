@@ -27,7 +27,4 @@ public class Inspect {
     private int noFraudDetected;
     private int noOfPassengers;
 
-
-    public Inspect(int inspectId, int inspectorId, int busId, int routeId, int i, String time, int noFraudDetected, int noOfPassengers) {
-    }
 }

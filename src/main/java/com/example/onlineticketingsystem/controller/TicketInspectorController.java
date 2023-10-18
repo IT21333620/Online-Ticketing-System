@@ -24,6 +24,7 @@ public class TicketInspectorController {
 
     @GetMapping("/byInspector/{id}")
     public List<TicketInspector> getInspectorById(@PathVariable int id) {
+
         return ticketInspectorService.getInspectorById(id);
     }
 

@@ -14,5 +14,6 @@ public interface InspectRepo extends JpaRepository<Inspect,Integer> {
 
     List<Inspect> findByInspectorIdAndInspectDateBetween(int inspectorId, Date startDate, Date endDate);
 
+    Inspect findByInspectId(int inspect_id);
 
 }

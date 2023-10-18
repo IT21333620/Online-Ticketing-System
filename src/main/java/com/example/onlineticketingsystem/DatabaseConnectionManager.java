@@ -14,7 +14,7 @@ public class DatabaseConnectionManager {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:mysql://localhost:3306/ticket_system?createDatabaseIfNotExist=true");
         config.setUsername("root");
-        config.setPassword("root123");
+        config.setPassword("mysql");
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
         dataSource = new HikariDataSource(config);

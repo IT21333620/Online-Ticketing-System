@@ -101,4 +101,6 @@ public class InspectService {
 
         return inspectRepo.findByInspectorIdAndInspectDateBetween(id, sqlTomorrow, sqlEndOfYear);
     }
+
+
 }
